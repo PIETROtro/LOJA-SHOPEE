@@ -1,0 +1,5 @@
+@model ShopeeMVC.Models.Produto
+<h1>@Model.Nome</h1>
+<p>Preço: @Model.Preco.ToString("C")</p>
+<p>Estoque: @Model.Estoque</p>
+<a asp-action="Index" class="btn btn-secondary">Voltar</a>

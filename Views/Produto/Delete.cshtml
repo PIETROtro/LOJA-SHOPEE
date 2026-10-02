@@ -1,0 +1,9 @@
+@model ShopeeMVC.Models.Produto
+@{ ViewData["Title"] = "Excluir Produto"; }
+<h1>Excluir Produto</h1>
+<div class="alert alert-warning">Deseja realmente excluir <strong>@Model.Nome</strong>?</div>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Codigo"/>
+    <button class="btn btn-danger">Sim, excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

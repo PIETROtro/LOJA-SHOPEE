@@ -1,0 +1,34 @@
+@model List<ShopeeMVC.Models.CarrinhoItem>
+@{ ViewData["Title"] = "Meu Carrinho"; }
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>🛒 Meu Carrinho</h1>
+    <a asp-controller="Produto" asp-action="Index" class="btn btn-outline-primary">Continuar comprando</a>
+</div>
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Seu carrinho está vazio.</div>
+}
+else
+{
+    <div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead><tr><th>Produto</th><th>Preço</th><th>Quantidade</th><th>Subtotal</th><th>Ações</th></tr></thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Preco.ToString("C")</td>
+                <td>@item.Quantidade</td>
+                <td>@item.Subtotal.ToString("C")</td>
+                <td><a asp-action="Remover" asp-route-id="@item.ProdutoId" class="btn btn-danger btn-sm">Remover</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    </div>
+    <div class="text-end">
+        <h3>Total: @Model.Sum(x => x.Subtotal).ToString("C")</h3>
+        <a asp-action="Limpar" class="btn btn-outline-danger">Limpar carrinho</a>
+    </div>
+}
